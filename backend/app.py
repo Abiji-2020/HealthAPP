@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from llama_cpp import Llama
 from pydantic import BaseModel
 from typing import List, Dict 
+from fastapi.middleware.cors import CORSMiddleware
+
 
 llm = Llama.from_pretrained(
 	repo_id="Codeprocastinator/Llama-3.2-3b-it-mental-health",
@@ -10,6 +12,13 @@ llm = Llama.from_pretrained(
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods (GET, POST, etc.)
+    allow_headers=["*"],  # Allow all headers
+)
 class Message(BaseModel):
     role: str
     content: str
@@ -24,7 +33,7 @@ async def chat(messages: List[Message]):
     try:
         response = llm.create_chat_completion(
             messages=formatted_message,
-            max_tokens=1024,
+            max_tokens=24,
             stop=["<|eot_id|>"]
         )
         assistant_response = response["choices"][0]["message"]["content"]

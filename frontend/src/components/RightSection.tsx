@@ -99,35 +99,30 @@ const RightSection = () => {
 
 
     const sendMessage = async () => {
-
-        let url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=` + API_KEY
+        try{
+        let url = `http://localhost:8000/chat`;
         let messagesToSend = [
-            ...trainingPrompt,
-            ...allMessages,
             {
                 "role": "user",
-                "parts": [{
-                    "text": message
-                }]
-            }
+                "content": message,
+            },
         ]
-
+        console.log("Message To Send",messagesToSend)
         setIsSent(false)
         let res = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                "contents": messagesToSend
-            })
+            body: JSON.stringify(
+                messagesToSend)
         })
 
         let resjson = await res.json()
         setIsSent(true)
         // console.log(resjson.candidates[0].content.parts[0].text)
 
-        let responseMessage = resjson.candidates[0].content.parts[0].text
+        let responseMessage = resjson.response;
 
         let newAllMessages = [
             ...allMessages,
@@ -149,6 +144,9 @@ const RightSection = () => {
 
         setAllMessages(newAllMessages)
         setMessage('')
+    }catch(e){
+        console.log(e)
+    }
     }
     return (
         <div className={styles.rightSection}>
