@@ -99,7 +99,7 @@ const RightSection = () => {
 
     const sendMessage = async () => {
         try{
-        let url = `http://65.1.86.92:8000/chat`;
+        let url = `http://13.201.34.26:8000/chat`;
         let messagesToSend = [
             {
                 "role": "user",
