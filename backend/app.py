@@ -33,7 +33,7 @@ async def chat(messages: List[Message]):
     try:
         response = llm.create_chat_completion(
             messages=formatted_message,
-            max_tokens=2048,
+            max_tokens=1024,
             stop=["<|eot_id|>"]
         )
         assistant_response = response["choices"][0]["message"]["content"]
