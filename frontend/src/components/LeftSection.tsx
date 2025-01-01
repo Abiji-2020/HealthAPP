@@ -1,5 +1,5 @@
 import React from 'react'
-import calmlogo from '@/assets/calm.jpg'
+import calmlogo from '@/assets/chatbot.png'
 import Image from 'next/image'
 import styles from '@/styles/LeftSection.module.css'
 

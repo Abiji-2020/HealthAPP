@@ -1,8 +1,7 @@
 "use client";
 import React, { useState } from 'react'
 import styles from '@/styles/RightSection.module.css'
-import chatgptlogo from '@/assets/chatgptlogo.png'
-import chatgptlogo2 from '@/assets/chatgptlogo2.png'
+import chatgptlogo2 from '@/assets/chatbot.png'
 import nouserlogo from '@/assets/nouserlogo.png'
 import Image from 'next/image'
 // import schoolbg from '@/assets/schoolBG.jpg'
